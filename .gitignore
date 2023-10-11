@@ -2,3 +2,5 @@ books
 testing
 .vscode
 *.docx
+*.txt
+*.out
