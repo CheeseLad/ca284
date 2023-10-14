@@ -15,12 +15,25 @@ int sumCal(int grades[], int length);
 /* main function */
 int main(int argc, char*argv[])
 {
-  char text[strlen(argv[1])];
-  char word[strlen(argv[2])];
-  strcpy(argv[1], text);
-  strcpy(argv[2], word);
-  char *pFound = NULL;
-  pFound = strstr(text, word);
-  printf("%d\n", text[pFound]);
-	return 0;
+  int string_length = strlen(argv[1]);
+  int word_length = strlen(argv[2]);
+  int k = 0;
+  int l = 0;
+  int start = 0;
+  for (int i = 0; i < string_length; i ++) {
+    if (argv[1][i] == argv[2][k]) {
+      start = i;
+      k++;
+      l = i + 1;
+      while (k < word_length) {
+        if (argv[1][l] == argv[2][k]) {
+          l++;
+          k++;
+        }
+      }
+    }
+  }
+  if (k == word_length) {
+    printf("%d %d\n", start, l - 1);
+  }
 }

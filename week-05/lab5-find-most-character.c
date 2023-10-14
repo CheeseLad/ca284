@@ -18,7 +18,8 @@ int main(int argc, char*argv[])
   
   int length = strlen(argv[1]);
   int result_int;
-  char space[] = " ";
+  //char space[] = " ";
+  //char *pSpace = &space;
   char result_char;
   for (int i = 0; i < length; i++) {
     int count = 0;
@@ -28,13 +29,14 @@ int main(int argc, char*argv[])
       }
     }
     if (count > result_int) {
-      char *str1 = argv[1][i];
-      if (strcmp(str1, space) == 0) {
+      //char *str1 = argv[1][i];
+      // (strcmp(str1, pSpace) == 0)
+      if (argv[1][i] != 32) {
         result_int = count;
         result_char = argv[1][i];
       }
+      
     }
-    
   }
   printf("%c\n", result_char);
 	return 0;
