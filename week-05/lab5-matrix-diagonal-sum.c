@@ -9,27 +9,29 @@ Description:
 #include <stdlib.h>
 
 /* function prototypes */
-void calculate_sum(int matrix[size][size], int size, int *sum);
+  int sum_matrix(int (*pMatrix)[250], int size) {
+    int sum = 0;
+    int *pSum = &sum;
+    for (int l = 0; l < size; l++) {
+      *pSum = *pSum + *(*(pMatrix+l)+l);
+      printf("%p\n", pSum);
+    }
+    printf("%d\n", *pSum);
+	  return 0;
+  }
 
 /* main function */
 int main(int argc, char*argv[])
 {
   int size = atoi(argv[1]);
   int matrix[size][size];
+  int (*pMatrix)[size] = matrix;
   int k = 2;
   for (int i = 0; i < size; i++){
     for (int j = 0; j < size; j++) {
-      matrix[i][j] = atoi(argv[k]);
+      *(*(pMatrix+i)+j) = atoi(argv[k]);
       k++;
     } 
   }
-  int *sum = 0;
-  printf("%d\n", calculate_sum(matrix[size][size], size, &sum));
-	return 0;
-}
-
-void calculate_sum(int matrix[size][size], int size, int *sum) {
-for (int l = 0; l < size; l++) {
-    sum = sum + matrix[l][l];
-  }
+  sum_matrix(pMatrix, size);
 }

@@ -1,0 +1,70 @@
+/*
+Author: Jake Farrell
+Date: 26/10/2023
+Description:
+*/
+
+/* includes */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Country Country;
+
+struct Country
+{
+  char country[100];
+  char capital[100];
+  float population;
+  int size;
+};
+
+/* function prototypes */
+void buildCountry(Country country[], char *items[], int len);
+void checkSmall(Country country[], int len, int (*pSmall));
+void printCountry(Country country[], int len, int (*pSmall));
+
+/* main function */
+int main(int argc, char*argv[])
+{
+  Country country[50];
+  int length = argc - 1;
+  buildCountry(country, argv, length);  
+  int small[100];
+  int (*pSmall) = small;
+  checkSmall(country, length, pSmall);
+  printCountry(country, length, pSmall);
+	return 0;
+}
+
+/* other functions */
+void buildCountry(Country country[], char *items[], int len) {
+  int j = 0;
+  for (int i = 1; i < len; i = i + 4) {
+    strcpy(country[j].country, items[i]);
+    strcpy(country[j].capital, items[i + 1]);
+    country[j].population = atof(items[i + 2]);
+    country[j].size = atoi(items[i + 3]);
+    j++;
+  }
+}
+
+void checkSmall(Country country[], int len, int (*pSmall)) {
+  for (int i = 0; i < len / 4; i++) {
+    if (country[i].size < 100000) {
+      *(pSmall+i) = 1;
+    }
+    else {
+      *(pSmall+i) = 0;
+    }
+  }
+}
+
+void printCountry(Country country[], int len, int (*pSmall)) {
+  printf("Country\t\t\tCapital\t\t\tSize\t\t\tPopulation\n");
+  for (int i = 0; i < len / 4; i++) {
+    if (*(pSmall+i) == 1) {
+      printf("%s\t\t\t%s\t\t\t%d\t\t\t%.2f\n", country[i].country, country[i].capital, country[i].size, country[i].population);
+    } 
+  }
+}

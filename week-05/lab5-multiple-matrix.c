@@ -9,7 +9,15 @@ Description:
 #include <stdlib.h>
 
 /* function prototypes */
-
+int build_matrix(char *argv[], int matrix[100][100], int size_m, int size_n, int k) {
+for (int i = 0; i < size_m; i++) {
+    for (int j = 0; j < size_n; j++) {
+      matrix[i][j] = atoi(argv[k]);
+      k++;
+    } 
+  }
+return matrix;
+}
 /* main function */
 int main(int argc, char*argv[])
 {
@@ -17,12 +25,8 @@ int main(int argc, char*argv[])
   int size_one_n = atoi(argv[2]);
   int matrix_one[size_one_m][size_one_n];
   int k = 3;
-  for (int i = 0; i < size_one_m; i++) {
-    for (int j = 0; j < size_one_n; j++) {
-      matrix_one[i][j] = atoi(argv[k]);
-      k++;
-    } 
-  }
+  build_matrix(argv, matrix_one, size_one_m, size_one_n, k);
+  
 
   int size_two_m = atoi(argv[k]);
   k++;

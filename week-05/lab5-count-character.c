@@ -10,18 +10,26 @@ Description:
 #include <string.h>
 
 /* function prototypes */
-int sumCal(int grades[], int length);
+
+void get_count(char *letter[], char *word[], int length) {
+  int count = 0;
+  for (int i = 0; i < length; i++) {
+    if (atoi(*letter) == *word[i]) {
+      count++;
+      printf("%d", count);
+    }
+    printf("%d %s %d", count, *letter, *word[i]);
+  }
+}
 
 /* main function */
 int main(int argc, char*argv[])
 {
-  int count = 0;
-  int length = strlen(argv[2]);
-  for (int i = 0; i < length; i++) {
-    if (argv[1][0] == argv[2][i]) {
-      count++;
-    }
-  }
-  printf("%d\n", count);
+  char letter = *argv[1];
+  char word = argv[2];
+  
+  int length = strlen(word);
+  get_count(&letter, word, length);
 	return 0;
 }
+
