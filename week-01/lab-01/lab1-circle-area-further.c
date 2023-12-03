@@ -17,15 +17,14 @@ description:  Takes a single argument and computes area of circle
 
 int main(int argc, char *argv[])
 {
-/* variable initialisation */
 	int radius = 0;
 	float area = 0.0;
-/* all command-line arguments come in as character strings, so atoi turns them into ints*/
 	radius = atoi(argv[1]);
 	if(radius <= 0){
 		printf("Please enter a number greater than zero: \n");
 		scanf("%d", &radius);
-	}
+	} else {
+
 
 	radius = radius*radius; /* radius squared */
 
@@ -34,6 +33,6 @@ int main(int argc, char *argv[])
     /* print to two decimal places*/
     //printf("%.2f\n",area); /* We only want to show only two values to the right of the decimal point*/
      printf("%.2f\n",area); /* We want to set the width of the shown number = 9. If the total number of digits < 9, spaces will be shown before the number*/
-
-    return (0); /* exit correctly*/
-} /* end program*/
+   }
+    return (0);
+} /
